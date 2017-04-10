@@ -55,6 +55,8 @@ RUN apt-get -q -y autoremove
 
 RUN pip install --upgrade futures tornado cssmin slimit psutil
 
+ENV GATEONE_REPO_URL https://github.com/livenowhy/GateOne.git  # 这里设置比较合适
+
 # Create the necessary directories, clone the repo, and install everything
 RUN mkdir -p /gateone/logs && \
     mkdir -p /gateone/users && \
@@ -78,6 +80,8 @@ RUN rm -f /etc/gateone/ssl/key.pem && \
 
 EXPOSE 8000
 
-ENV GATEONE_REPO_URL https://github.com/livenowhy/GateOne.git
+
 
 CMD ["/usr/local/bin/update_and_run_gateone", "--log_file_prefix=/gateone/logs/gateone.log"]
+
+# docker build -t index.boxlinker.com/liuzhangpei/gateone .
