@@ -61,8 +61,9 @@ ENV GATEONE_REPO_URL https://github.com/livenowhy/GateOne.git  # 这里设置比
 RUN mkdir -p /gateone/logs && \
     mkdir -p /gateone/users && \
     mkdir -p /etc/gateone/conf.d && \
-    mkdir -p /etc/gateone/ssl && \
-    cd /gateone && \
+    mkdir -p /etc/gateone/ssl
+
+RUN cd /gateone && \
     git clone $GATEONE_REPO_URL && \
     cd GateOne && \
     python setup.py install && \
