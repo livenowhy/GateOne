@@ -30,7 +30,7 @@
 #
 ############################################################
 
-FROM ubuntu:14.04
+FROM index.boxlinker.com/library/ubuntu:14.04
 MAINTAINER liuzhangpei <liuzhangpei@126.com>
 
 
