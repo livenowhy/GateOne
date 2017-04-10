@@ -38,19 +38,21 @@ MAINTAINER liuzhangpei <liuzhangpei@126.com>
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update --fix-missing && apt-get -y upgrade
 
-# Install dependencies
-RUN apt-get -y \
-    install python-pip \
-    python-imaging \
-    python-setuptools \
-    python-mutagen \
-    python-pam \
-    python-dev \
-    git \
-    telnet \
-    openssh-client && \
-    apt-get -y clean && \
-    apt-get -q -y autoremove
+# Install dependencies; 分开安装,为了防止网络问题导致中断
+RUN apt-get -y install python-pip
+RUN apt-get -y install python-imaging
+RUN apt-get -y install python-setuptools
+RUN apt-get -y install python-mutagen
+RUN apt-get -y install python-pam
+RUN apt-get -y install python-dev
+RUN apt-get -y install git
+RUN apt-get -y install telnet
+RUN apt-get -y install telnet
+RUN apt-get -y install openssh-client
+RUN apt-get -y clean
+RUN apt-get -q -y autoremove
+
+
 RUN pip install --upgrade futures tornado cssmin slimit psutil
 
 # Create the necessary directories, clone the repo, and install everything
