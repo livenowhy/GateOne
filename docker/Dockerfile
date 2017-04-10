@@ -55,7 +55,8 @@ RUN apt-get -q -y autoremove
 
 RUN pip install --upgrade futures tornado cssmin slimit psutil
 
-ENV GATEONE_REPO_URL https://github.com/livenowhy/GateOne.git  # 这里设置比较合适
+ENV GATEONE_REPO_URL https://github.com/livenowhy/GateOne.git
+# 这里设置比较合适
 
 # Create the necessary directories, clone the repo, and install everything
 RUN mkdir -p /gateone/logs && \
