@@ -31,9 +31,8 @@
 ############################################################
 
 FROM ubuntu
-MAINTAINER Dan McDougall <daniel.mcdougall@liftoffsoftware.com>
+MAINTAINER liuzhangpei <liuzhangpei@126.com>
 
-ENV GATEONE_REPO_URL https://github.com/liftoff/GateOne.git
 
 # Ensure everything is up-to-date
 ENV DEBIAN_FRONTEND noninteractive
@@ -67,8 +66,7 @@ RUN mkdir -p /gateone/logs && \
     cp docker/60docker.conf /etc/gateone/conf.d/60docker.conf
 
 # This ensures our configuration files/dirs are created:
-RUN /usr/local/bin/gateone --configure \
-    --log_file_prefix="/gateone/logs/gateone.log"
+RUN /usr/local/bin/gateone --configure --log_file_prefix="/gateone/logs/gateone.log"
 
 # Remove the auto-generated key/certificate so that a new one gets created the
 # first time the container is started:
@@ -77,5 +75,7 @@ RUN rm -f /etc/gateone/ssl/key.pem && \
 # (We don't want everyone using the same SSL key/certificate)
 
 EXPOSE 8000
+
+ENV GATEONE_REPO_URL https://github.com/livenowhy/GateOne.git
 
 CMD ["/usr/local/bin/update_and_run_gateone", "--log_file_prefix=/gateone/logs/gateone.log"]
