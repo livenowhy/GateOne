@@ -12,6 +12,12 @@ gitpush:
 	git commit -a -m "...."
 	git push origin develop
 
+
+gitmaster:
+	git checkout master
+	git commit -a -m "...."
+	git push origin develop
+
 gitpull:
 	git pull origin develop
 
