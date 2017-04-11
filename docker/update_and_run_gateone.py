@@ -26,7 +26,8 @@ if __name__ == "__main__":
     go_args = sys.argv[1:]
     os.chdir('/gateone/GateOne')
     if '--noupdate' not in go_args:
-        retcode, output = getstatusoutput('git pull')
+        # retcode, output = getstatusoutput('git pull')
+        retcode, output = getstatusoutput('git pull origin develop')
         if 'up-to-date' in output:
             print("Gate One is already up-to-date")
         else:
