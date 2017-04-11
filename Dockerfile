@@ -55,35 +55,37 @@ RUN apt-get -q -y autoremove
 
 RUN pip install --upgrade futures tornado cssmin slimit psutil
 
-ENV GATEONE_REPO_URL https://github.com/livenowhy/GateOne.git
-# 这里设置比较合适
 
 # Create the necessary directories, clone the repo, and install everything
 RUN mkdir -p /gateone/logs && \
     mkdir -p /gateone/users && \
     mkdir -p /etc/gateone/conf.d && \
-    mkdir -p /etc/gateone/ssl
+    mkdir -p /etc/gateone/ssl && \
+    mkdir -p /gateone/GateOne
 
-RUN cd /gateone && git clone $GATEONE_REPO_URL
-RUN cd /gateone/GateOne && \
-    python setup.py install && \
-    cp docker/update_and_run_gateone.py /usr/local/bin/update_and_run_gateone && \
-    cp docker/60docker.conf /etc/gateone/conf.d/60docker.conf
-
-# This ensures our configuration files/dirs are created:
-RUN /usr/local/bin/gateone --configure --log_file_prefix="/gateone/logs/gateone.log"
-
-# Remove the auto-generated ey/certificate so that a new one gets created the
-# first time the container is started:
-RUN rm -f /etc/gateone/ssl/key.pem && \
-    rm -f /etc/gateone/ssl/certificate.pem
-# (We don't want everyone using the same SSL key/certificate)
-
-EXPOSE 8000
-
-
-
-CMD ["/usr/local/bin/update_and_run_gateone", "--log_file_prefix=/gateone/logs/gateone.log"]
+ADD . /gateone/GateOne
+#
+#RUN cd /gateone && git clone $GATEONE_REPO_URL
+#RUN cd /gateone/GateOne && \
+#    python setup.py install && \
+#    cp docker/update_and_run_gateone.py /usr/local/bin/update_and_run_gateone && \
+#    cp docker/60docker.conf /etc/gateone/conf.d/60docker.conf
+#
+## This ensures our configuration files/dirs are created:
+#RUN /usr/local/bin/gateone --configure --log_file_prefix="/gateone/logs/gateone.log"
+#
+## Remove the auto-generated ey/certificate so that a new one gets created the
+## first time the container is started:
+#RUN rm -f /etc/gateone/ssl/key.pem && \
+#    rm -f /etc/gateone/ssl/certificate.pem
+## (We don't want everyone using the same SSL key/certificate)
+#
+#EXPOSE 8000
+#
+#
+#
+##CMD ["/usr/local/bin/update_and_run_gateone", "--log_file_prefix=/gateone/logs/gateone.log"]
+#CMD ["/usr/local/bin/update_and_run_gateone"]
 
 # docker build -t index.boxlinker.com/liuzhangpei/gateone .
 # docker run -d --name=gateone -p 4433:8000 index.boxlinker.com/liuzhangpei/gateone
