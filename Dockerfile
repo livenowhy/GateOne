@@ -54,7 +54,6 @@ RUN apt-get -q -y autoremove
 
 
 RUN pip install --upgrade futures tornado cssmin slimit psutil
-RUN pip install --upgrade tornado
 
 
 # Create the necessary directories, clone the repo, and install everything
