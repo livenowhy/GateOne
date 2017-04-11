@@ -74,17 +74,18 @@ RUN cd /gateone/GateOne && \
     cp update_and_run_gateone.py /usr/local/bin/update_and_run_gateone && \
     cp 60docker.conf /etc/gateone/conf.d/60docker.conf
 
-#
-## This ensures our configuration files/dirs are created:
-#RUN /usr/local/bin/gateone --configure --log_file_prefix="/gateone/logs/gateone.log"
-#
+EXPOSE 8000
+
+# This ensures our configuration files/dirs are created:
+RUN /usr/local/bin/gateone
+
 ## Remove the auto-generated ey/certificate so that a new one gets created the
 ## first time the container is started:
 #RUN rm -f /etc/gateone/ssl/key.pem && \
 #    rm -f /etc/gateone/ssl/certificate.pem
 ## (We don't want everyone using the same SSL key/certificate)
 #
-#EXPOSE 8000
+#
 #
 #
 ##CMD ["/usr/local/bin/update_and_run_gateone", "--log_file_prefix=/gateone/logs/gateone.log"]
@@ -92,3 +93,4 @@ RUN cd /gateone/GateOne && \
 
 # docker build -t index.boxlinker.com/liuzhangpei/gateone .
 # docker run -d --name=gateone -p 4433:8000 index.boxlinker.com/liuzhangpei/gateone
+# docker run -it index.boxlinker.com/liuzhangpei/gateone bash
