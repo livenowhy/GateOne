@@ -7,17 +7,18 @@ IMAGE_NAME = liuzhangpei/gateone
 
 GATEONE = gateone
 
-
 git:
 	git add -A
 	git commit -a -m "...."
 	git push origin develop
 
+gitpull:
+	git pull origin develop
+
+
 container:
 	docker build -t ${PREFIX}/${IMAGE_NAME}:${TAG} .
 
-clean:
-	docker rmi -f $(PREFIX):$(TAG) || true
 
 push: container
 	docker push ${PREFIX}/${IMAGE_NAME}:${TAG}
