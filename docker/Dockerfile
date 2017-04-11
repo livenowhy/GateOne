@@ -86,3 +86,4 @@ EXPOSE 8000
 CMD ["/usr/local/bin/update_and_run_gateone", "--log_file_prefix=/gateone/logs/gateone.log"]
 
 # docker build -t index.boxlinker.com/liuzhangpei/gateone .
+# docker run -d --name=gateone -p 4433:8000 index.boxlinker.com/liuzhangpei/gateone
