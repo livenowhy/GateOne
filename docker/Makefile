@@ -16,7 +16,7 @@ gitpull:
 	git pull origin develop
 
 
-container:
+build:
 	docker build -t ${PREFIX}/${IMAGE_NAME}:${TAG} .
 
 
