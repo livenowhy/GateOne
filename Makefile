@@ -37,5 +37,11 @@ run: build
 	docker run -d -p 4433:8000 --name=${GATEONE} ${PREFIX}/${IMAGE_NAME}:${TAG}
 
 
+restart: gitpull build
+	docker stop ${GATEONE} || true
+	docker rm -f ${GATEONE} || true
+	docker run -d -p 4433:8000 --name=${GATEONE} ${PREFIX}/${IMAGE_NAME}:${TAG}
+
+
 logs:
 	docker logs -f ${GATEONE}
