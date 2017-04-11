@@ -26,6 +26,5 @@ except ImportError:
 if __name__ == "__main__":
     go_args = sys.argv[1:]
     os.chdir('/gateone/GateOne')
-    os.execvp('/usr/bin/python', [
-        '/usr/bin/python', '/usr/local/bin/gateone'] + go_args)
+    os.execvp('/usr/bin/python', ['/usr/bin/python', '/usr/local/bin/gateone'] + go_args)
     os._exit(0)
