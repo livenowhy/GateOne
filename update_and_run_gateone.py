@@ -19,30 +19,13 @@ line argument to this script.
 import os, sys
 try:
     from commands import getstatusoutput
-except ImportError: # Python 3
+except ImportError:
+    # Python 3
     from subprocess import getstatusoutput
 
 if __name__ == "__main__":
     go_args = sys.argv[1:]
     os.chdir('/gateone/GateOne')
-    if '--noupdate' not in go_args:
-        # modify lzp 20170411
-        # retcode, output = getstatusoutput('git pull')
-        retcode, output = getstatusoutput('git pull ')
-        if 'up-to-date' in output:
-            print("Gate One is already up-to-date")
-        else:
-            print("Installing the latest code...")
-            retcode, output = getstatusoutput('python setup.py install')
-            if retcode == 0:
-                print("Gate One has been updated.")
-            else:
-                print("Encountered a problem trying to install/upgrade Gate One...")
-                print(output)
-                sys.exit(1)
-        retcode, output = getstatusoutput('pip install --upgrade tornado')
-    else:
-        go_args.remove('--noupdate')
     os.execvp('/usr/bin/python', [
         '/usr/bin/python', '/usr/local/bin/gateone'] + go_args)
     os._exit(0)
