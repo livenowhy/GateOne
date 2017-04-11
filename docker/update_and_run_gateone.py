@@ -28,7 +28,7 @@ if __name__ == "__main__":
     if '--noupdate' not in go_args:
         # modify lzp 20170411
         # retcode, output = getstatusoutput('git pull')
-        retcode, output = getstatusoutput('git pull origin develop')
+        retcode, output = getstatusoutput('git pull ')
         if 'up-to-date' in output:
             print("Gate One is already up-to-date")
         else:
