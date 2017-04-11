@@ -77,7 +77,7 @@ RUN cd /gateone/GateOne && \
 EXPOSE 8000
 
 # This ensures our configuration files/dirs are created:
-RUN /usr/local/bin/gateone
+RUN /usr/local/bin/gateone --configure --log_file_prefix="/gateone/logs/gateone.log"
 
 ## Remove the auto-generated ey/certificate so that a new one gets created the
 ## first time the container is started:
