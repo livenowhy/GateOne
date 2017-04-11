@@ -11,8 +11,6 @@
 # Meta
 __version__ = '1.2'
 __version_info__ = (1, 2)
-__license__ = "AGPLv3 or Proprietary (see LICENSE.txt)"
-__author__ = 'Dan McDougall <daniel.mcdougall@liftoffsoftware.com>'
 
 __doc__ = """\
 About termio
