@@ -26,6 +26,7 @@ if __name__ == "__main__":
     go_args = sys.argv[1:]
     os.chdir('/gateone/GateOne')
     if '--noupdate' not in go_args:
+        # modify lzp 20170411
         # retcode, output = getstatusoutput('git pull')
         retcode, output = getstatusoutput('git pull origin develop')
         if 'up-to-date' in output:
