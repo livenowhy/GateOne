@@ -791,6 +791,7 @@ class StaticHandler(tornado.web.StaticFileHandler):
         # must be a classmethod (we need access to self.use_pkg).
         if self.use_pkg:
             if not resource_exists(self.use_pkg, absolute_path):
+                print 'ssssssss->>>>>>>>>>>>>>>>>>>>>>'
                 raise HTTPError(404)
             return resource_filename(self.use_pkg, absolute_path)
         return super(

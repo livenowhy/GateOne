@@ -73,7 +73,7 @@ RUN cd /gateone/GateOne && \
 # This ensures our configuration files/dirs are created:
 RUN /usr/local/bin/gateone --configure --log_file_prefix="/gateone/logs/gateone.log"
 
-# Remove the auto-generated key/certificate so that a new one gets created the
+# Remove the auto-generated ey/certificate so that a new one gets created the
 # first time the container is started:
 RUN rm -f /etc/gateone/ssl/key.pem && \
     rm -f /etc/gateone/ssl/certificate.pem
