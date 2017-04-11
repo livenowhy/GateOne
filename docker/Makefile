@@ -7,7 +7,7 @@ IMAGE_NAME = liuzhangpei/gateone
 
 GATEONE = gateone
 
-git:
+gitpush:
 	git add -A
 	git commit -a -m "...."
 	git push origin develop
