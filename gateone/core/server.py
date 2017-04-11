@@ -3686,6 +3686,8 @@ class GateOneApp(tornado.web.Application):
         # Make the / optional in the regex so it works with the @addslash
         # decorator.  e.g. "/whatever/" would become "/whatever/?"
         index_regex = "%s?" % url_prefix
+        auth_log.info('index_regex index_regex = ')
+        auth_log.info(index_regex)
         # Setup our URL handlers
         handlers = [
             (index_regex, MainHandler),

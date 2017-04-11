@@ -6,6 +6,7 @@ from setuptools.command.install import install
 from distutils.command.install import INSTALL_SCHEMES
 import sys, os, shutil, io
 
+
 for scheme in INSTALL_SCHEMES.values():
     scheme['data'] = scheme['purelib']
 
@@ -335,6 +336,7 @@ if PYTHON3:
         for path in sys.path:
             try:
                 files = os.listdir(path)
+                os.
             except (NotADirectoryError, FileNotFoundError):
                 continue
             for f in files:
